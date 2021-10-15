@@ -1,0 +1,17 @@
+*{
+    padding:0;
+    margin:0;
+}
+
+html,
+body{
+    height:100%;
+    background-color: darkgrey;
+    display: flex;
+    justify-content: center;
+}
+
+.main{
+    background-color: lightgrey;
+    width: 1024px;
+}
