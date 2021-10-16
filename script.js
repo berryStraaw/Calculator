@@ -1,3 +1,24 @@
+/* const menubutton=document.querySelector("#menubtn");
+const sidebar=document.querySelector(".sidebar");
+menubutton.onclick= function(){
+    sidebar.classList.toggle("active");
+} */
+const githover=document.querySelector(".gitIcon");
+const personalProjects=document.querySelector(".personalProjects");
+const githover2=document.querySelector(".hiddenLayer");
+const hiddenLayer=document.querySelector('.hiddenLayer')
+githover.onmouseover = function(){
+    personalProjects.style.cssText='height:64px';
+}; 
+githover.onmouseout=function(){
+    personalProjects.style.cssText="height:24px";
+};
+githover2.onmouseover = function(){
+    personalProjects.style.cssText='height:64px';
+}; 
+githover2.onmouseout=function(){
+    personalProjects.style.cssText="height:24px";
+};
 function add(a, b){
     return a+b;
 }
