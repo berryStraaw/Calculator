@@ -65,6 +65,7 @@ body{
     flex-direction: column;
     align-items: flex-end;
     padding: 10px;
+    overflow: hidden;
 }
 
 .calc .buttonBox{
@@ -81,10 +82,16 @@ body{
 
 .calc .text1{
     height:50%;
+    width: 100%;
+    text-align: right;
+    white-space: nowrap;
 }
 
 .calc .text2{
+    width: 100%;
     height:50%;
+    text-align: right;
+    white-space: nowrap;
 }
 
 .calc .textStyle{

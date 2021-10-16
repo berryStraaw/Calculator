@@ -20,6 +20,12 @@ githover2.onmouseout=function(){
     personalProjects.style.cssText="height:24px";
 };
 function add(a, b){
+    if(typeof a=="string"){
+        a=parseFloat(a,10);
+    }
+    if(typeof b=="string"){
+        b=parseFloat(b,10);
+    }
     return a+b;
 }
 
@@ -41,6 +47,10 @@ function divide(a, b){
 
 function power(a, b){
     return a**b;
+}
+
+function percentage(a,b){
+    return a*b/100;
 }
 
 function factorial(a, result=1){
@@ -87,7 +97,13 @@ function opp(sign, a, b){
     }
 }
 function buildStr(sign, a, b){
-    text1.textContent=a+" "+sign+" " + b;
+    str=a+" "+sign+" " + b;
+    if(str.length>25){
+        str=str.slice(-25);
+    }
+    return str;
+    /* text1.textContent=str; */
+
 }
 function clear(){
         a='';
@@ -110,10 +126,43 @@ function addStr(id, num){
         return;
     }
     if(id=="="){
-        text2.textContent=opp(sign,a,b);
+        let ans;
+        if(sign=="!"){
+            b=1;
+        }
+        
+        if(b==""){
+
+        }
+        else{
+           ans=opp(sign,a,b);
+            ans=Math.round(ans * 100000) / 100000; 
+        }
+        if(isNaN(ans)){
+        }
+        else{
+          text2.textContent=ans;   
+        }
+        if(sign=="/"){
+            if(b==0){
+                text2.textContent="nu-ugh that's illegal";
+            }
+        }
         return;
     }
-    
+    if(id=="%"){
+        if(sign!=""){
+            if(sign=="+" || sign=="-"){
+                b=percentage(a,b);
+            }
+            else{
+                b/=100;
+            }
+        }
+        else{
+            a/=100;
+        }
+     }
     if(numCheck=='num'){
         if(a==""){
             a=id;
@@ -137,11 +186,17 @@ function addStr(id, num){
           text1.textContent="please enter a number first";  
           return;
         }
+        else if(id=="%"){
+        }
         else{
            sign=id; 
         }
     }
-    buildStr(sign, a, b);
+
+    
+    
+    let fullString=buildStr(sign, a, b);
+    text1.textContent=fullString;
 }
 /* console.log(opp("!",4)); */
 
