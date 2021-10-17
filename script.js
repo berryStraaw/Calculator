@@ -115,6 +115,17 @@ function clear(){
 function addStr(id, num){
     let [trash, numCheck]= num.split(' ');
     /* text1.textContent=text1.textContent + id + numCheck; */
+    if(id=="del"){
+        if(b!=""){
+            b=b.substring(0,b.length-1)
+        }
+        else if(sign!=""){
+            sign="";
+        }
+        else if(a!=""){
+            a=a.substring(0,a.length-1)
+        }
+    }
     if(text2.textContent!=''){
         clear();
         if(!numCheck){
@@ -133,6 +144,15 @@ function addStr(id, num){
         
         if(b==""){
 
+        }
+        else if(sign=="!"){
+            if(String(a).includes(".")){
+                text2.textContent="nu-ugh that's illegal";
+            }
+            else{
+                ans=opp(sign,a,b);
+                ans=Math.round(ans * 100000) / 100000; 
+             }
         }
         else{
            ans=opp(sign,a,b);
@@ -163,38 +183,85 @@ function addStr(id, num){
             a/=100;
         }
      }
+    if(id=="!"){
+        if(sign!=""){
+            ans=opp(sign,a,b);
+            ans=Math.round(ans * 100000) / 100000; 
+            a=ans;
+            b="";
+            sign=id;
+        }
+        else{
+            sign=id;
+        }
+    }
     if(numCheck=='num'){
         if(a==""){
-            a=id;
+            if(id=="."){
+                a=0;
+                a+=id;  
+            }
+            else{
+             a=id;   
+            }
         }
         else{
             if(sign!=""){
+                if(id=="."){
+                    if(b.includes(".")){
+                        return;
+                    }
+                }
                 if(b==""){
-                    b=id;
+                    if(id=="."){
+                        b=0;
+                        b+=id;  
+                    }
+                    else{
+                     b=id;   
+                    }
                 }
                 else{
                     b+=id;
                 }
             }
             else{
+                if(id=="."){
+                   if(a.includes(".")){
+                    return;
+                    } 
+                }
+                
                 a+=id;
             } 
         }   
     }      
     if(!numCheck){
-        if(a==""){
+        if(a=="" && id!="del"){
           text1.textContent="please enter a number first";  
           return;
         }
         else if(id=="%"){
         }
-        else{
-           sign=id; 
+        else if(id=="!"){}
+        else if(sign=="" && id!="del"){
+            sign=id;
         }
+        else{
+            if(b!="" && id!="del"){
+                ans=opp(sign,a,b);
+                ans=Math.round(ans * 100000) / 100000; 
+                a=ans;
+                b="";
+                sign=id;
+            }
+            else if(id!="del"){
+                sign=id; 
+            } 
+        }
+        
     }
 
-    
-    
     let fullString=buildStr(sign, a, b);
     text1.textContent=fullString;
 }
@@ -214,5 +281,73 @@ buttons.forEach((btn)=>{
         addStr(e.target.id, e.target.className);
         /* text1.textContent=text1.textContent + e.target.id; */
     });
+});
+
+document.addEventListener("keydown",(event)=>{
+    if(event.key==="Backspace"){
+        document.getElementById('del').click();
+     }
+});
+document.addEventListener("keypress",(event)=>{
+    if(event.key==="1"){
+       document.getElementById('1').click();
+    }
+    if(event.key==="2"){
+        document.getElementById('2').click();
+     }
+     if(event.key==="3"){
+        document.getElementById('3').click();
+     }
+     if(event.key==="4"){
+        document.getElementById('4').click();
+     }
+     if(event.key==="5"){
+        document.getElementById('5').click();
+     }
+     if(event.key==="6"){
+        document.getElementById('6').click();
+     }
+     if(event.key==="7"){
+        document.getElementById('7').click();
+     }
+     if(event.key==="8"){
+        document.getElementById('8').click();
+     }
+     if(event.key==="9"){
+        document.getElementById('9').click();
+     }
+     if(event.key==="0"){
+        document.getElementById('0').click();
+     }
+     if(event.key==="c"){
+        document.getElementById('AC').click();
+     }
+     if(event.key==="+"){
+        document.getElementById('+').click();
+     }
+     if(event.key==="-"){
+        document.getElementById('-').click();
+     }
+     if(event.key==="*"){
+        document.getElementById('*').click();
+     }
+     if(event.key==="/"){
+        document.getElementById('/').click();
+     }
+     if(event.key==="^"){
+        document.getElementById('^').click();
+     }
+     if(event.key==="=" || event.key==="Enter"){
+        document.getElementById('=').click();
+     }
+     if(event.key==="!"){
+        document.getElementById('!').click();
+     }
+     if(event.key==="%"){
+        document.getElementById('%').click();
+     }
+     if(event.key==="."){
+        document.getElementById('.').click();
+     }
 });
 
